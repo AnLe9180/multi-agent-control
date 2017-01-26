@@ -1,2 +1,0 @@
-set MATLAB=C:\PROGRA~1\MATLAB\R2016a
-"%MINGW_DIR%\bin\sh.exe" --login -c "cd \"%CD%\" && make -f QBot2_Image_Proc_Line_Following.mk  MAT_FILE=0 DEBUG=0 ISPROTECTINGMODEL=NOTPROTECTING OPTS="-DON_TARGET_WAIT_FOR_START=0""
