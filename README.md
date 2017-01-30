@@ -1,4 +1,4 @@
-# multi-agent-control
+# Vision-based Distributed Flock Control of Multiple Robots using Distributed Estimation and Vision-based Navigation
 Senior Project for Bradley University. Vision-based multiple robot formation tracking.
 
 
