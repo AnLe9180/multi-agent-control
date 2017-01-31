@@ -50,12 +50,17 @@ tt=0:tsteps:T;
 dt=tt';
 %% Formulation Setup
 
-for k=1:1000;
+for k=1:4000;
     
 
     
     %Iterating for Control Law
     for i=1:N;
+        if (k == 500)
+            P_x=5;
+            P_Y=5;
+            [phi_d, rho_d] = cart2pol(P_x,P_y)
+        end
         %partial q(p)/dx q(p)/dy ; atan(y,x)/dx atan(y,x)/dy
         %J_i=[P_x/(sqrt(P_x^2+P_y^2)) P_y/(sqrt(P_x^2+P_y^2)); -P_y/(P_x^2+P_y^2) P_x/(P_x^2+P_y^2)];
         J_i=[x(i)/(sqrt(x(i)^2+y(i)^2)) y(i)/(sqrt(x(i)^2+y(i)^2)); -y(i)/(x(i)^2+y(i)^2) x(i)/(x(i)^2+y(i)^2)];
@@ -68,7 +73,7 @@ for k=1:1000;
         N;
         phii_d= phii_(phi, i)
         phii_d = phi_d - phii_d
-        phii_dot = w_d + kphi*(phi_d-phi(i));
+        phii_dot = w_d + kphi*(phii_d-phi(i));
         V_i= [rhoi_dot; phii_dot];
         Ui = Rt*(J_i'*V_i);
         x(i)= x(i) + Ui(1)*dt(k);
@@ -95,6 +100,8 @@ for k=1:1000;
 
 end
 %offset to global coordinate value
+    P_x = 2;
+    P_y= 3;
 Px1=Px1+P_x;
 Py1=Py1+P_y;
 Px2=Px2+P_x;
@@ -111,7 +118,7 @@ for i=1:length(Px1)
   
   plot(Px3(i),Py3(i),'*r','LineWidth',2);
   hold on;
-  pause(0.025);
+  pause(0.0005);
 end
 %% Extra Code
 %P_i=sqrt(x^2+y^2);
