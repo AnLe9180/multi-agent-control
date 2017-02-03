@@ -74,8 +74,8 @@ for k=1:4000;
         phii_d= phii_(phi, i)
         phii_d = phi_d - phii_d
         phii_dot = w_d + kphi*(phii_d-phi(i));
-        V_i= [rhoi_dot; phii_dot];
-        Ui = Rt*(J_i'*V_i);
+            V_i= [rhoi_dot; phii_dot];
+            Ui = Rt*(J_i'*V_i);
         x(i)= x(i) + Ui(1)*dt(k);
         y(i)= y(i) + Ui(2)*dt(k);
         %figure(1)
