@@ -1,0 +1,86 @@
+clear all;
+close all;
+clc;
+%% Initial Conditions
+%global v; 
+%global omega;
+%global thetastar;
+krho=.5;
+kphi = .5;
+Px = []
+Py = []
+%cartesian values for  Nth robot
+x=[5 6 7];
+y=[5 6 7];
+phi=zeros(1, length(x));
+rho=zeros(1, length(x));
+
+
+[phi,rho] = cart2pol(x,y);
+phi
+
+%desired value
+    P_x = 2;
+    P_y= 3;
+    Rt = [ 1 0; 0 1];
+[phi_d, rho_d] = cart2pol(P_x,P_y)
+w_d=.2; 
+
+%Set value for N robots
+N=3;
+
+% Simulation time
+
+
+% The computing step time
+T=100;
+tsteps=0.01; 
+tt=0:tsteps:T;
+dt=tt';
+%% Formulation Setup
+
+for k=1:1000;
+    
+
+    
+    %Iterating for Control Law
+    for i=1:N;
+        %partial q(p)/dx q(p)/dy ; atan(y,x)/dx atan(y,x)/dy
+        J_i=[P_x/(sqrt(P_x^2+P_y^2)) P_y/(sqrt(P_x^2+P_y^2)); -P_y/(P_x^2+P_y^2) P_x/(P_x^2+P_y^2)];
+        %Vi=qi_dot= [rhoi_dot, thetai_dot]
+        rhoi_dot = krho*(rho_d-rho(i));
+        phi;
+        i;
+        N;
+        phii_d= phii_(phi, i);
+        phii_dot = w_d + kphi*(phii_d-phi(i));
+        V_i= [rhoi_dot; phii_dot];
+        Ui = Rt*(J_i'*V_i);
+        x(i)= x(i) + Ui(1);
+        y(i)= y(i) + Ui(2);
+        %figure(1)
+        %hold on
+        %plot(x(i) , y(i))
+        %hold on
+        if i==1
+            Px1 = [Px x(i)];
+            Py1 = [Py y(i)];
+        end
+        if i==2
+            Px2 = [Px x(i)];
+            Py2 = [Py y(i)];
+        end
+        if i==3
+            Px3 = [Px x(i)];
+            Py3 = [Py y(i)];
+        end
+    end
+
+end
+
+%% Extra Code
+%P_i=sqrt(x^2+y^2);
+%theta_i=atan2(y,x);
+
+
+
