@@ -1,1 +1,0 @@
-Implementation on QBot2
