@@ -1,0 +1,22 @@
+"run_cht_stages.m" contains the GUI function.  It is a little rough, so it requires
+the desired image to be passed as an argument when you call this function from the
+Matlab console.  
+
+
+
+(in Matlab console)
+	load('sample_images.mat');
+	run_cht_stages(image_1);
+	
+	
+	
+(if you want a specific color channel, for example blue...)
+	run_cht_stages(image_1(:,:,3));
+
+
+* If you do not have the image processing toolbox and still want to run this demo, edit "run_cht_stages.m" and
+* replace the use of "edge(...)" with another call to the custom method in "canny_edge_detect.m"
+* and replace all uses of "imshow(...)" with simply "image(...)" and I think that should work.
+* Be warned that the method in "canny_edge_detect.m isn't great.  I don't know if this is because the original author
+* of the method (Peter Corke) wrote it before Matlab's conv2 became obsolete for fixed-point values or maybe
+* it's because of the kernel we're using?
