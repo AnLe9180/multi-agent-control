@@ -1,0 +1,35 @@
+\chapter{Problem Formulation}
+
+
+\section{Kinematic Model of Mobile Robots}
+
+Depending on whether the robot is following a target or leader robots, two separate control modules are used. Both modules use a Cartesian coordinate system and follow a target point, which is obtained by transforming the current or previous result of the image processing module with respect to the robot’s current position.
+
+\section{Vision-based control}
+The purpose of the vision-based control is to provide a target point to the kinematic control, which it accomplishes by processing the Qbot2’s color images and depth images. This control should also provide additional information as to whether the target point it provides should be considered valid or not.
+
+
+\section{Project Objectives, Goals, and Approach}
+The goal of our project is to design distributed vision-based control algorithms for mobile robots and to implement and validate the proposed algorithms. The primary project tasks (research, concept definition, design, and demonstration) tasks included:
+
+\begin{itemize}
+\item	Design a target identification (detect and locate) module based on RGB image features obtained from a vision sensor
+\item	Design a target tracking algorithm based on robot model linearization
+\item	Design a leader-follower formation control algorithm based on depth and image features provided from the target identification module 
+\item	Design a state machine to coordinate target identification module and target control module and communications between Robots
+\item	Integrate and validate the proposed distributed controls through experimentation in a controlled lab environment
+\end{itemize}
+
+
+\section{Project Assumptions}
+The Lab environment, limitations of the research and practical limitations (and availability) of fully operational equipment are also considered.  
+
+\begin{itemize}
+\item	The lab environment will be a well-lit, indoor area
+\item	The target will remain on the same level plane as the robots (2D motion tracking).  
+\item	The target will not move faster than the Qbot2s maximum velocity (0.7 m/s).  
+\item	The target will be a solid colored, basketball-sized sphere.  
+\item	The environment will be reasonably free of similarly colored objects.  
+\item	As stated above the multiple robots must use same control strategy.
+
+\end{itemize}

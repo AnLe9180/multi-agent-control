@@ -1,0 +1,12 @@
+\chapter{Discussion}
+
+\section{Impact of the Design}
+Our design allows limited communication and sensing among all robots. Assuming a leader and its peripheral robots, we can obtain encirclement with each consecutive robot containing a smaller and smaller encirclement radii. This two part modular design allows for classifying the leader and followers and allows for increased modularity and customization if needed. With Stateflow, replacing a certain image processing or control module is as simple as replacing or rewriting a Simulink block. Creating simulations for certain environments can also be implemented using Stateflow.
+The overall design can be implemented in search and rescue missions, environmental surveying, and much more.
+
+\section{Future Work}
+There are two areas that can be significantly improved or developed.
+
+The first improvement would be to implement collision avoidance.  This would involve additional image processing as well as control logic.  The kinematic control can be improved to accommodate obstacle avoidance by scaling the encirclement radius as the Qbot2 approaches the obstacle in its path (ref encirclement paper).  As for identifying the obstacle, we believe that this can be accomplished identifying expected distance from the floor and identifying all image elements that deviate from that expected floor distance.  
+
+The method of object recognition could also be improved. One possibility is using edge detection and performing a Hough Transform for the expected target object shape.
