@@ -419,9 +419,9 @@ Distributed control of multiple unmanned autonomous robots (UARs) has been the s
 \subsection{Related Work}
 Methods for successfully coordinating multiple robots to autonomously encircle a target point have been put forth by several research papers.  These distributed controls assume communication the robots to communicate their kinematic state variables between one another, and consequently researchers have designed their algorithms in ways that minimize the number of communication channels required between robots.  However, there has not been nearly as much research done that attempt to implement coordinated encirclement that rely entirely on each individual robot’s vision sensors.
 
-A review of prior work at Bradley and research literature was conducted by our team during the conception phase of the project.  This included a review of e prior Class of 2016 Senior Project, Cooperative Control of Heterogeneous Mobile Robots Network [cite ref 1?]. The 2016 research and capstone project experience using the QBot2 robots was leveraged in our project. The 2016 project tested cooperative control using the QBot2 platform including the Qbot2 Camera and the Kinect RGBD camera for localization.  Wiﬁ communication was used to exchange position information among robots. Consensus and formation stabilization problems were studied. 
+A review of prior work at Bradley and research literature was conducted by our team during the conception phase of the project.  This included a review of e prior Class of 2016 Senior Project, Cooperative Control of Heterogeneous Mobile Robots Network\cite{Wang}. The 2016 research and capstone project experience using the QBot2 robots was leveraged in our project. The 2016 project tested cooperative control using the QBot2 platform including the Qbot2 Camera and the Kinect RGBD camera for localization.  Wiﬁ communication was used to exchange position information among robots. Consensus and formation stabilization problems were studied. 
 
-Our project also researched and references another work, highly relevant to our 2017 project objectives. Decentralized multi-robot encirclement of a 3D target with guaranteed collision avoidance for object tracking and encirclement by Franchi, Stegagno, and Oriolo, [cite ref 2]. Their work on 3-D (and 2-D) and distributed collaborative control is extensive and leverages research going back to 2001.   Their findings delivers a control framework for achieving encirclement of a target moving in a 3D space using multiple robots, image-only sensing, and requiring local communication between exactly two other members of the encircling group of robots. 
+Our project also researched and references another work, highly relevant to our 2017 project objectives. Decentralized multi-robot encirclement of a 3D target with guaranteed collision avoidance for object tracking and encirclement by Franchi, Stegagno, and Oriolo\cite{Oriolo}. Their work on 3-D (and 2-D) and distributed collaborative control is extensive and leverages research going back to 2001.   Their findings delivers a control framework for achieving encirclement of a target moving in a 3D space using multiple robots, image-only sensing, and requiring local communication between exactly two other members of the encircling group of robots. 
 
 An additional consideration, for a vision-only sensing strategy was image processing techniques and algorithms.  We relied on Peter Corke’s book “Robotics, Vision and Control” as well as his Matlab toolbox for much of our image processing.  The academic tutorials packaged with the Qbot2 were also valuable resources.  It is worth mentioning that systems in the literature utilizing visual-only sensing generally assumed 360-degree robot sensing (e.g. fisheye camera). Ref 1 Research (extracts below) utilized a 240deg field of view sensor and a laser range finder for identification and locating targets to support inputs to their control strategies.  Because the Qbot2 cameras have less than a 90-degree field-of-view, our design would have to incorporate additional logic to locate targets outside the robot’s visual range.
 
@@ -492,7 +492,7 @@ The QBot2 comes equipped with a differential drive robot base which has a maximu
 
 
 \subsubsection{Software}
-To connect to the QBOT2 A host-target real-time control system [2] is utilized.   As shown in Figure 3-2, the target QBOT2 computer is connected wirelessly with the host computer on which the SIMULINK model is running. The control algorithms are developed in MATLAB/SIMULINK with QUARC on the host computer. The control models are cross-compiled and downloaded to the target computer in real time. 
+To connect to the QBOT2, a host-target real-time control system is utilized.   As shown in Figure 3-2, the target QBOT2 computer is connected wirelessly with the host computer on which the SIMULINK model is running. The control algorithms are developed in MATLAB/SIMULINK with QUARC on the host computer. The control models are cross-compiled and downloaded to the target computer in real time. 
 
 
 \begin{figure}[htbp]
@@ -715,7 +715,6 @@ One should note the limits for angular and forward velocity are set to .2 m/s.
 The Simulink model is configured using the HIL block from the QUARC toolbox.  This enables users to more easily run their simulations in a virtual environment as well as on actual hardware.  The project must also be configured to communicate with a specific IP address, which can be done through the QUARC add-on options menu in Simulink.  It is also important to set the sample time configure the “Solver” pane of the Simulink model configuration.  It is important to select the “ode1” and “fixed-step” options.  Additionally, when performing operations on images or large arrays of data, it is recommended that users select a sample frequency no greater than 15Hz.  Our experiments used a 10Hz sample frequency.
 \subsubsection{Tasks Coordination}
 Our system would need to switch between two modes of operation depending on whether or not the target was in view.   Stateflow was used to control the varying states in our model. Models for both target encirclement and leader-follower used similar simulink and stateflow models with differences only in controls and how often a search was made. In both models, search mode is done by toggling between image processing and rotating. Once the desired accuracy is obtained from blob detection, the state switched to the control module.  The target encirclement model only searches for target every set time-interaction whereas leader-follower will search for a target every other time-step. 
-To view the entire Stateflow and its subsystem, see figure~\ref{fig:a8} to \ref{fig:a10} on page~\pageref{fig:a8} to \pageref{fig:a10}.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -961,12 +960,12 @@ given us along our journey throughout our college career.
 
 \bibitem{}{“Cooperative Control of Heterogenous Mobile Robots Network.” [Online]. Available: http://ee.bradley.edu/projects/proj2016/mrn/. [Accessed:  14-Dec-2016].}
 
-\bibitem{}{G. Bock, R. Hendrickson, J. Lamkin, B. Dhall, J. Wang, and I. S. Ahn, “Experiments of distributed control for multiple mobile robots with limited sensing/communication capacity,” in 2016 IEEE International Conference on Electro Information Technology (EIT), 2016, pp. 0559–0564.}
+\bibitem{Wang}{G. Bock, R. Hendrickson, J. Lamkin, B. Dhall, J. Wang, and I. S. Ahn, “Experiments of distributed control for multiple mobile robots with limited sensing/communication capacity,” in 2016 IEEE International Conference on Electro Information Technology (EIT), 2016, pp. 0559–0564.}
 \bibitem{Oriolo}{G. Oriolo. Wmr control via dynamic feedback linearization: design, implementation and
 experimental validation. {\it IEEE Trans. on Control Systems Technology}, 10:835–852, 2002.}
 \bibitem{Oriolo}{Franchi, Stegagno, and Oriolo. Decentralized multi-robot encirclement of a 3D target with guaranteed collision avoidance. 2016}
-\bibitem{Oriolo}{Freda and Oriolo. Vision-based interception of a moving target with a nonholonomic mobile robot. 2007}
-\bibitem{Oriolo}{S. Miah, Lab 2: Trajectory Tracking Using Differential Drive Mobile Robots. 2016 .}
+\bibitem{}{Freda and Oriolo. Vision-based interception of a moving target with a nonholonomic mobile robot. 2007}
+\bibitem{}{S. Miah, Lab 2: Trajectory Tracking Using Differential Drive Mobile Robots. 2016 .}
 \bibitem{}{Cap 02.pdf. [Online]. \\ Available: http://mayerle.deps.prof.ufsc.br/private/eps6405/Cap 2002.pdf. [Accessed: 14-Nov-2016]}
 \bibitem{}{“Kinect for Windows Sensor Components and Specifications.” [Online]. Available: https://msdn.microsoft.com/en-us/library/jj131033.aspx. [Accessed: 14-Dec-2016].}
 
